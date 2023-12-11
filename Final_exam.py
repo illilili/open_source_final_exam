@@ -21,10 +21,11 @@ import time
 # target 은 영소문자로만 이루어져 있습니다.
 
 def solution(my_string, target):
-   
+   # 제한사항 확인
     if not (1 <= len(my_string) <= 100 and all(char.islower() for char in my_string) and
             1 <= len(target) <= 100 and all(char.islower() for char in target)):
         return 0 
+    # 부분 문자열 찾기
     return 1 if my_string.find(target) != -1 else 0
 
     
@@ -57,9 +58,10 @@ def solution(letter):
     '--':'m','-.':'n','---':'o','.--.':'p','--.-':'q','.-.':'r',
     '...':'s','-':'t','..-':'u','...-':'v','.--':'w','-..-':'x',
     '-.--':'y','--..':'z'}
-
+    # 공백 기준 리스트
     morsecode = letter.split(' ')
     answer = ''
+    # 모스부호 변환
     for list in morsecode:
         if list in morse:
             answer += morse[list]
@@ -89,7 +91,9 @@ print(solution(letter))
 
 def solution(age):
     answer = ''
+    # 나이 문자열로 변환
     for num in str(age):
+        # 아스키 코드에 해당하는 문자로 변환
         answer += chr(ord('a') + int(num))
     
     return answer
@@ -114,8 +118,10 @@ print(solution(23))
 def solution(r1, r2):
     answer = 0
 
+    # 범위 생성, 좌표 확인
     for x in range(-r2, r2 + 1):
         for y in range(-r2, r2 + 1):
+            # 원의 방정식 사용 좌표 조건 충족 확인
             if x**2 + y**2 >= r1**2 and x**2 + y**2 <= r2**2 and x % 1 == 0 and y % 1 == 0:
                 answer += 1
 
@@ -149,14 +155,18 @@ print(solution(1, 3))
 
 from functools import cmp_to_key
 
+# 비교 함수
 def compare(x, y):
     return int(str(x) + str(y)) - int(str(y) + str(x))
 
+# 정렬
 def solution(numbers):
     list = sorted(numbers, key=cmp_to_key(compare), reverse=True)
     
+    # 이어붙임
     answer = ''.join(map(str, list))
     
+    # 0인지 확인
     return answer if int(answer) != 0 else '0'
 
 # test
